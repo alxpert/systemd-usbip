@@ -13,3 +13,9 @@ fi
 
 /usr/sbin/usbip bind --$BUS_ID
 
+UDEV_RULES_FILE="/etc/udev/rules.d/99-$1.rules"
+
+echo "SUBSYSTEM==\"usb\", ACTION==\"add\", KERNEL==\"${USB_BUS_ID}\", RUN+=\"/usr/sbin/usbip bind --$BUS_ID\"" > $UDEV_RULES_FILE
+
+udevadm control --reload-rules
+udevadm trigger
