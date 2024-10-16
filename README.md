@@ -11,17 +11,25 @@ systemd unit into `/etc/systemd/system`.
 ## Configuration
 
 Create one or files in `/etc/usbip-devices` named `<device_name>.conf`.
-These files **must** contain the following configuration keys:
+These files **must** contain either one of the following configuration keys:
 
 
 - `USB_IDVENDOR` -- Vendor ID. 
 - `USB_IDPRODUCT` -- Product ID. 
+
+or
+
+- `USB_BUS_ID` -- to bind toa specific USB port
 
 For example, to share a device with vendor:product 03f0:8607, create a file
 called /etc/usbip_devices/mouse.conf
 
     USB_IDVENDOR=03f0
     USB_IDPRODUCT=8607
+
+or
+
+    USB_BUS_ID=1-1.1.4
 
 To enable the device at boot, run:
 
